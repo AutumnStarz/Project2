@@ -1,13 +1,13 @@
 {
-  "name": "domomaker",
+  "name": "botnet",
   "version": "1.0.0",
-  "description": "A Simple Login Example using Node.js, Mongo and Redis",
+  "description": "a social media website",
   "main": "./server/app.js",
   "scripts": {
     "webpack": "webpack",
     "webpackWatch": "webpack watch",
     "nodemon": "nodemon -e js,html,css --watch ./server --watch ./hosted ./server/app.js",
-    "start": "node ./server/app.js",
+    "start": "node ./server/server.js",
     "pretest": "eslint ./server --fix",
     "test": "echo \"Tests complete\"",
     "heroku-postbuild": "webpack"
@@ -21,6 +21,8 @@
   "author": "Cody Van De Mark / Austin Willoughby",
   "license": "Apache 2.0",
   "devDependencies": {
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.29.1",
@@ -30,7 +32,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.26.10",
-    "@babel/preset-react": "^7.26.3",
     "babel-loader": "^10.0.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
