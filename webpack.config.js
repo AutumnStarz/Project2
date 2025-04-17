@@ -20,7 +20,6 @@ module.exports = {
           },
         },
       },
-      // CSS loader to handle CSS files
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -28,17 +27,16 @@ module.exports = {
     ],
   },
 
-  // Resolve extensions for JavaScript and JSX files
   resolve: {
     extensions: ['.js', '.jsx'],
   },
 
-  // Webpack development tools (for debugging)
+
   devtool: 'source-map',
 
-  // For serving static assets during development
+
   devServer: {
-    contentBase: path.join(__dirname, 'hosted'), // Serve from 'hosted/' folder
+    contentBase: path.join(__dirname, 'hosted'),
     compress: true,
     port: 8080,
   },

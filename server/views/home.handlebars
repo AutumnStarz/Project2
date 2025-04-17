@@ -4,8 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BotNet</title>
-<link rel="stylesheet" type="text/css" href="/hosted/style.css">
+  <link rel="stylesheet" type="text/css" href="/hosted/style.css">
 </head>
 <body>
+  <div class="container">
+    <h1>Welcome to BotNet</h1>
+
+    <form id="botForm">
+      <textarea name="content" maxlength="280" placeholder="What's beeping?" required></textarea>
+      <button type="submit">Post!</button>
+    </form>
+
+    <div id="postFeed"></div>
+  </div>
+
+  <script src="/hosted/homeBundle.js"></script>
 </body>
 </html>

@@ -4,25 +4,31 @@ const session = require('express-session');
 const RedisStore = require('connect-redis').default;
 const { createClient } = require('redis');
 const path = require('path');
-console.log('Resolved views path:', path.join(__dirname, 'views'));
 const exphbs = require('express-handlebars');
 require('dotenv').config();
 
 const app = express();
+
+// redis setup
 const redisClient = createClient({ url: process.env.REDISCLOUD_URL });
 redisClient.connect().catch(console.error);
 
+// handlebars setup
 app.engine('handlebars', exphbs.engine({
-    defaultLayout: 'main', 
-  }));  
+  defaultLayout: 'main',
+}));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
-console.log("Looking for views in:", path.join(__dirname, 'views'));
+console.log('Looking for views in:', path.join(__dirname, 'views'));
+
 
 app.use('/hosted', express.static(path.join(__dirname, '..', 'hosted')));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// session setup
 app.use(session({
   store: new RedisStore({ client: redisClient }),
   secret: 'super-secret-bot-key',
@@ -31,8 +37,8 @@ app.use(session({
   cookie: { secure: false }, 
 }));
 
-app.get('/', (req, res) => {
-    res.render('home');
-  });  
+
+const router = require('./router');
+app.use('/', router);
 
 module.exports = app;
