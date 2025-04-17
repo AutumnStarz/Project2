@@ -28,14 +28,14 @@ app.use('/hosted', express.static(path.join(__dirname, '..', 'hosted')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// session setup
 app.use(session({
   store: new RedisStore({ client: redisClient }),
-  secret: 'super-secret-bot-key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false }, 
 }));
+
 
 
 const router = require('./router');
