@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  premium: {
+     type: Boolean, 
+     default: false 
+    },
 });
 
 UserSchema.pre('save', async function (next) {

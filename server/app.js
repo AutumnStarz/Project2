@@ -11,24 +11,24 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Redis setup
+// redis setup
 const redisClient = createClient({ url: process.env.REDISCLOUD_URL });
 redisClient.connect().catch(console.error);
 
-// Handlebars setup
+// handlebars setup
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 console.log('Looking for views in:', path.join(__dirname, 'views'));
 
-// Static files
+// static files
 app.use('/hosted', express.static(path.join(__dirname, '..', 'hosted')));
 
-// Middleware
+// middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Sessions
+// sessions
 app.use(session({
   store: new RedisStore({ client: redisClient }),
   secret: process.env.SESSION_SECRET || 'dev-secret',
@@ -37,7 +37,7 @@ app.use(session({
   cookie: { secure: false },
 }));
 
-// Routes
+// routes
 const router = require('./router');
 app.use('/', router);
 

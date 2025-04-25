@@ -54,4 +54,9 @@ body {
     text-shadow: 0 0 5px #ff00ff;
   }
   
+  .premium-name {
+    color: gold;
+    font-weight: bold;
+    text-shadow: 0 0 5px gold, 0 0 10px orange;
+  }
   
