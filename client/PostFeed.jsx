@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Post from './Post';
+import ChangePasswordForm from './ChangePasswordForm';
 
 const PostFeed = () => {
   const [posts, setPosts] = useState([]);
@@ -14,11 +15,12 @@ const PostFeed = () => {
   }, []);
 
   const handleBuyPremium = () => {
-    alert("✨ You're now a (FAKE) Premium Member!");
+    alert("You're now a Premium Member!");
     localStorage.setItem('isPremium', 'true');
     setIsPremium(true);
   };
 
+  // load posts from the server
   const loadPosts = async () => {
     try {
       const res = await fetch('/posts');
@@ -31,6 +33,7 @@ const PostFeed = () => {
     }
   };
 
+  // create a new post
   const handleCreatePost = async () => {
     if (!newPostContent.trim()) return;
 
@@ -47,6 +50,8 @@ const PostFeed = () => {
     }
   };
 
+
+  // handle beeping and booping
   const handleBeep = async (postId) => {
     try {
       await fetch(`/post/${postId}/beep`, { method: 'POST' });
@@ -65,6 +70,7 @@ const PostFeed = () => {
     }
   };
 
+  // handle deleting a post
   const handleDeletePost = async (postId) => {
     try {
       await fetch(`/post/${postId}`, { method: 'DELETE' });
@@ -76,6 +82,8 @@ const PostFeed = () => {
 
   return (
     <div>
+      <ChangePasswordForm /> 
+      
       {!isPremium && (
         <div style={{ marginBottom: '1rem' }}>
           <button
@@ -91,7 +99,7 @@ const PostFeed = () => {
               cursor: 'pointer',
             }}
           >
-            💎 Buy Premium (Fake)
+             Buy Premium 
           </button>
         </div>
       )}

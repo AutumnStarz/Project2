@@ -12,7 +12,7 @@ router.get('/', requiresLogin, (req, res) => {
   res.render('home'); 
 });
 
-// post routes (but not like POST, post routes for like posts)
+// post routes (but not like POST, post routes for like, posts)
 router.get('/posts', getAllPosts);          
 router.post('/post', requiresLogin, createPost); 
 
@@ -30,6 +30,9 @@ router.get('/logout', authController.logout);
 
 // upgrade to premium
 router.post('/premium', requiresLogin, upgradeToPremium);
+
+// password change
+router.post('/change-password', requiresLogin, authController.changePassword);
 
 module.exports = router;
 

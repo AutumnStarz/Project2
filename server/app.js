@@ -41,6 +41,10 @@ app.use(session({
 const router = require('./router');
 app.use('/', router);
 
+app.use((req, res, next) => {
+  res.status(404).render('404');
+});
+
 // MongoDB + Start server
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
